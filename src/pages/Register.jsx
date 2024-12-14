@@ -1,13 +1,16 @@
 import Lottie from "lottie-react";
-import lottieAnim from '/src/assets/lottie/register.json';
+import lottieAnim from "/src/assets/lottie/register.json";
+import { useContext } from "react";
+import AuthContext from "../context/AuthContext";
 
 const Register = () => {
+  const { createUser } = useContext(AuthContext);
   const handleSubmit = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    console.log(email, password);
-  }
+    createUser(email, password).then((res) => console.log(res.user));
+  };
   return (
     <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
